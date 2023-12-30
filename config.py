@@ -1,0 +1,8 @@
+security_group_name='FP'
+key_name='vockey'
+key_path='vockey.pem'
+region_name = 'us-east-1'
+orchestrator_ip = '54.91.248.25'
+aws_access_key_id='ASIAZKEDGPGADLIPL526'
+aws_secret_access_key='3w0/Zeo1W9uTn605VnY2YfPYSOguLrLE+IPJ2eUa'
+aws_session_token='FwoGZXIvYXdzENH//////////wEaDFnLq1SrG78Qf7w7ESLHAaar/RKTyTM9h8iBLfkD+QZoJI1fXMTPghEFE2UaF0DBiySBWiW/HUfNBZbDUqH4gBzHtQcR87R+pr3S+t3kTCDkcQmFP3pY97IAQD3tLfQBO29aVDi7kYq7ujU/UJmWh4M953cse4JIAY4lsSVf0q43VrUoPL5wuuPWrion8Yxh4Wp9dANsLe/7AKWtujIwa6FPyyYkdkvlqG7yEM5S0PC0zr1Z65EW2po0wfI73cvFBIJVtpZ6Mdtm7VWjtlC/djzx4Lj/kbwo8PubrAYyLSindCEhNU/Ry9xxMunWTcKdsQgDXxKi8AU43ribtlWEfayr2yDG7HyRUojs5Q=='
