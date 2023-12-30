@@ -1,3 +1,29 @@
+"""
+Flask Application for Distributed MySQL Query Routing
+
+This Flask application demonstrates a simple implementation of proxy and Gatekeeper design patterns for a distributed MySQL system
+where queries are routed to different MySQL nodes based on a specified routing strategy.
+
+Modules:
+- Flask: Web framework for handling HTTP requests
+- mysql.connector: Connector for MySQL database
+
+Classes:
+- MySQLCluster: Represents a MySQL node (either master or slave) with configuration details.
+- Proxy: Routes queries to different nodes based on a specified routing strategy.
+- DirectHitStrategy, RandomStrategy, CustomizedStrategy: Strategies for query routing.
+- Gatekeeper: Processes requests and directs them through the proxy.
+- App: Main Flask application.
+
+Functions:
+- proxy_pattern: Creates a proxy instance based on the specified routing strategy.
+
+Usage:
+1. Run the script to start the Flask application.
+2. Send POST requests to the '/process_request' endpoint with a JSON payload specifying the query type.
+   Supported query types: 'read' and 'write'.
+
+"""
 from flask import Flask, request, jsonify
 import random
 import mysql.connector
@@ -103,7 +129,7 @@ class Gatekeeper:
 
         self.proxy.route_query(query)
 
-def create_proxy(strategy, master_node, nodes):
+def proxy_pattern(strategy, master_node, nodes):
     if strategy == "direct":
         return Proxy(master_node, DirectHitStrategy(master_node), PROXY_SERVER_IP, PROXY_SERVER_INSTANCE_TYPE)
     elif strategy == "random":
@@ -120,8 +146,8 @@ master_node = MySQLCluster(is_master=True)
 slave_nodes = [MySQLCluster(is_master=False) for _ in range(len(SLAVE_NODES_IPS))]
 
 strategy = sys.argv[1] if len(sys.argv) > 1 else "direct"
-proxy_server = create_proxy(strategy, master_node, slave_nodes)
-gatekeeper = Gatekeeper(proxy_server)
+proxy_instance = proxy_pattern(strategy, master_node, slave_nodes)
+gatekeeper = Gatekeeper(proxy_instance)
 
 @app.route('/process_request', methods=['POST'])
 def process_request():
