@@ -1,6 +1,6 @@
 
-MySQL with AWS Deployment
-Overview
+MySQL with AWS Deployment.
+Overview:
 This repository contains a Python script for deploying a distributed MySQL system on AWS using the Boto3 library. The system includes the creation of a security group, launching multiple EC2 instances of different types, and deploying a Flask application for distributed MySQL query routing.
 
 Prerequisites
